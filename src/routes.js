@@ -1,27 +1,34 @@
-import React, { Component } from 'react';
-import { Switch,Route } from 'react-router-dom';
+import React from 'react';
+import { Switch } from 'react-router-dom';
 
-import Home from './components/Home/home'
-import Layout from './hoc/Layout/layout'
-import NewsArticles from './components/Articles/Post/index';
-import VideoArticles from './components/Articles/Videos';
-import News from './components/Articles/Post/news';
-import Videos from './components/Articles/Videos/videos';
+import Home from './components/Home/home';
+import Layout from './hoc/Layout/layout';
 
-class Routes extends Component {
-    render(){
-        return (
-            <Layout>
+import NewsArticle from './components/Articles/News/Post/index';
+import VideoArticle from './components/Articles/Videos/Video/index'
+import NewsMain from './components/Articles/News/Main/index';
+import VideosMain from './components/Articles/Videos/Main/index';
+import SignIn from './components/signin/signin';
+import Dashboard from './components/Dashboard/dashboard'
+
+import PrivateRoutes from './components/AuthRoutes/privateRoutes';
+import PublicRoutes from './components/AuthRoutes/publicRoutes';
+
+const Routes = (props) => {
+        return(
+            <Layout user={props.user}>
                 <Switch>
-                    <Route path="/" exact component={Home} />
-                    <Route path="/news" exact component={News} /> 
-                    <Route path="/videos" exact component={Videos} /> 
-                    <Route path="/articles/:id" exact component={NewsArticles} /> 
-                    <Route path="/videos/:id" exact component={VideoArticles} /> 
+                    <PublicRoutes {...props} restricted={false} path="/" exact component={Home}/>
+                    <PublicRoutes {...props} restricted={false} path="/news" exact component={NewsMain}/>
+                    <PublicRoutes {...props} restricted={false} path="/articles/:id" exact component={NewsArticle}/>
+                    <PublicRoutes {...props} restricted={false} path="/videos/:id" exact component={VideoArticle}/>
+                    <PublicRoutes {...props} restricted={false} path="/videos" exact component={VideosMain}/>
+                    <PublicRoutes {...props} restricted={true} path="/sign-in" exact component={SignIn}/>
+                    <PrivateRoutes {...props} path="/dashboard" exact component={Dashboard}/>
                 </Switch>
             </Layout>
+           
         )
-    }
 }
 
 export default Routes;

@@ -1,18 +1,17 @@
 import React from 'react';
-import {Link} from 'react-router-dom';
 import style from './header.css'
+import { Link } from 'react-router-dom';
 
 import FontAwesome from 'react-fontawesome';
-import SideNavigation from './SideNav/sidenav';
+import SideNav from './SideNav/sideNav';
 
 const Header = (props) => {
 
     const navBars = () => (
         <div className={style.bars}>
-            <FontAwesome
-                onClick = {props.onOpenNav}
-                name="bars"
-                style ={{
+            <FontAwesome name="bars"
+                onClick={props.onOpenNav}
+                style={{
                     color:'#dfdfdf',
                     padding:'10px',
                     cursor:'pointer'
@@ -23,19 +22,22 @@ const Header = (props) => {
 
     const logo = () => (
         <Link to="/" className={style.logo}>
-            <img alt="nba logo" src="/images/nba_logo.png" />
+            <img alt="nba logo" src="/images/nba_logo.png"/>
         </Link>
     )
     
+
     return (
         <header className={style.header}>
-            <SideNavigation {...props} />
+            <SideNav {...props}/>
             <div className={style.headerOpt}>
                 {navBars()}
                 {logo()}
             </div>
-        </header>    
+        </header>
     )
+
+
 }
 
 export default Header;

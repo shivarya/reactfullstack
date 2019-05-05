@@ -1,3 +1,7 @@
-export const CURRENT_YEAR = (new Date()).getFullYear();
+const CURRENT_YEAR = (new Date()).getFullYear()
+const URL = 'http://localhost:3004';
 
-export const SERVER_URL = "http://localhost:3001";
+export {
+    CURRENT_YEAR,
+    URL
+} 
