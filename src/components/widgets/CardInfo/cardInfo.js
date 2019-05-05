@@ -7,8 +7,10 @@ import styles from './cardInfo.css'
 const CardInfo = (props) =>{
 
     const teamName = (teams,team) =>{
-        let data = teams.find((item)=>{
-            return item.teamId === team
+        let data = teams.find((item)=>{                 
+            return (
+                parseInt(item.id, 10) === team
+            )
         });
         if(data){
             return data.name
@@ -16,9 +18,9 @@ const CardInfo = (props) =>{
     }
 
     const formatDate = (date) => {
-        return moment(date).format(' MM-DD-YYYY');
+        moment.suppressDeprecationWarnings = true;   
+        return moment(date).format('MM-DD-YYYY');
     }
-
     return(
         <div className={styles.cardNfo}>
             <span className={styles.teamName}>
@@ -26,7 +28,7 @@ const CardInfo = (props) =>{
             </span>
             <span className={styles.date}>
                 <FontAwesome name="clock-o"/>
-                {formatDate(props.date)}
+                {" "+formatDate(props.date)}
             </span>
         </div>
     )

@@ -3,7 +3,7 @@ import styles from '../articles.css';
 import moment from 'moment';
 
 const formatDate = (date) => {
-    return moment(date).format(' MM-DD-YYYY');
+    return moment(date).format('MM-DD-YYYY');
 }
 
 const postData = (props) => (

@@ -23,10 +23,10 @@ class NewsList extends Component {
     }
 
     request = (start,end) => {
-        if(this.state.teams.length < 1){
+        if(this.state.teams.length < 1){   
             firebaseTeams.once('value')
             .then((snapshot)=>{
-                const teams = firebaseLooper(snapshot);
+                const teams = firebaseLooper(snapshot);               
                 this.setState({
                     teams
                 })
@@ -71,8 +71,7 @@ class NewsList extends Component {
 
 
     renderNews = (type) => {
-        let template = null;
-
+        let template = null;        
         switch(type){
             case('card'):
                 template = this.state.items.map((item,i) => (

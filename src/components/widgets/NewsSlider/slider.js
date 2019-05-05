@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { firebase ,firebaseArticles, firebaseLooper } from '../../../firebase';
+import { firebaseArticles, firebaseLooper } from '../../../firebase';
 
 import SliderTemplates from './slider_templates';
 
@@ -64,8 +64,6 @@ class NewsSlider extends Component {
     }
 
     render(){
-        console.log(this.state.news);
-        
         return(
             <SliderTemplates data={this.state.news} type={this.props.type} settings={this.props.settings}/>
         )
